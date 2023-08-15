@@ -2,6 +2,8 @@
 
 ReFinder reads your save file and allows you to see what items, events and rewards you have on the map.
 
+<img width="379" alt="image" src="https://github.com/t1nky/remnant-item-finder/assets/1833969/5b2f52bf-97fa-484e-937e-5023275bda5c">
+
 ### Usage
 
 TODO: Instructions on how to use the application.
