@@ -1,0 +1,40 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+concurrency: production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Tag the repository
+        id: tag
+        run: |
+          DATE_TAG=$(date +v%Y%m%d)
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          FULL_TAG="${DATE_TAG}_${COMMIT_HASH}"
+          echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git tag -a $FULL_TAG -m "Published version $FULL_TAG" ${GITHUB_SHA}
+          git push origin $FULL_TAG
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.20"
+
+      - name: Build
+        run: GOOS=windows GOARCH=amd64 go build -v -o refinder.exe .
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          files: refinder.exe
