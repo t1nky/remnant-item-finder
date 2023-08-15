@@ -276,17 +276,21 @@ func getItemProperties(objects []remnant.UObject) (ItemProperties, error) {
 			continue
 		}
 
-		itemProperties.ZoneID, ok = obj.Properties["ZoneID"].(int32)
-		if !ok {
-			return ItemProperties{}, fmt.Errorf("could not parse zoneID")
+		if zoneID, ok := obj.Properties["ZoneID"]; ok {
+			itemProperties.ZoneID, ok = zoneID.(int32)
+			if !ok {
+				return ItemProperties{}, fmt.Errorf("could not parse zoneID")
+			}
 		}
 		itemProperties.ID, ok = obj.Properties["ID"].(int32)
 		if !ok {
 			return ItemProperties{}, fmt.Errorf("could not parse ID")
 		}
-		itemProperties.ParentQuestID, ok = obj.Properties["ParentQuestID"].(int32)
-		if !ok {
-			return ItemProperties{}, fmt.Errorf("could not parse ParentQuestID")
+		if parentQuestID, ok := obj.Properties["ParentQuestID"]; ok {
+			itemProperties.ParentQuestID, ok = parentQuestID.(int32)
+			if !ok {
+				return ItemProperties{}, fmt.Errorf("could not parse ParentQuestID")
+			}
 		}
 		break
 	}
