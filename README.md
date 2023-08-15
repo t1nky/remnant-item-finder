@@ -1,6 +1,6 @@
 # ReFinder - `Remnant 2` item finder
 
-ReFinder reads your save file and allows you to see what items, events and rewards you have on the map.
+ReFinder is a CLI tool that reads your save file and lets you see what items, events, and rewards you have on the map.
 
 <img width="379" alt="image" src="https://github.com/t1nky/remnant-item-finder/assets/1833969/5b2f52bf-97fa-484e-937e-5023275bda5c">
 
@@ -44,8 +44,8 @@ go build
 
 ### Contributing
 
-We appreciate all contributions. If you're interested in contributing, please see our CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
+We appreciate all your contributions. If you're interested in contributing, please take a look at our CONTRIBUTING.md for details on our code of conduct and the process for submitting pull requests.
 
 ### License
 
-This project is licensed under the MIT License. See LICENSE.md for more details.
+This project is licensed under the MIT License. Please have a look at LICENSE.md for more details.
