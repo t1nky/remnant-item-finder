@@ -10,7 +10,7 @@ TODO: Instructions on how to use the application.
 
 ### Prerequisites
 
-- Go 1.16 or later
+- Go 1.21 or later
 
 ### Installation
 
