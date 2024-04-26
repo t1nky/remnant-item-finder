@@ -819,7 +819,7 @@ func readProperty(r io.ReadSeeker, saveData *SaveData) (*Property, error) {
 	}
 
 	var value interface{}
-	if varName == "FowVisitedCoordinates" {
+	if varName == "FowVisitedCoordinates" || varName == "StartingRotation" {
 		_, err := r.Seek(int64(varSize+19), io.SeekCurrent)
 		if err != nil {
 			return nil, err

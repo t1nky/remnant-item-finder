@@ -139,6 +139,12 @@ func getPrintableName(name string) string {
 		return name
 	}
 
+	if strings.HasPrefix(name, "Item_HiddenContainer_Material_Engram_") {
+		name = strings.TrimSuffix(name, "_C")
+		name = strings.TrimPrefix(name, "Item_HiddenContainer_Material_Engram_")
+		return fmt.Sprintf("{Archetype Item} %s", splitByCapital(name))
+	}
+
 	if strings.HasPrefix(name, "Quest_") {
 		name = strings.TrimSuffix(name, "_C")
 		name = strings.TrimPrefix(name, "Quest_")
