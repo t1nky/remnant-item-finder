@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/signal"
 	"path"
 	"refinder/remnant"
 	"regexp"
@@ -661,6 +662,15 @@ func main() {
 	}
 	defer watcher.Close()
 
+	done := make(chan bool) // Create a channel to signal program termination
+	// Capture Ctrl+C signal (optional)
+	go func() {
+		sigint := make(chan os.Signal, 1)
+		signal.Notify(sigint, os.Interrupt)
+		<-sigint
+		done <- true
+	}()
+
 	// Start listening for events.
 	go func() {
 		for {
@@ -716,5 +726,7 @@ func main() {
 		return
 	}
 
-	<-make(chan struct{})
+	// Wait for a signal to terminate the program
+	<-done
+	fmt.Println("Closing application...")
 }
