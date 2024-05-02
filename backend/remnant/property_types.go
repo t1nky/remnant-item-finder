@@ -3,9 +3,9 @@ package remnant
 import (
 	"bytes"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"io"
-	"log"
 	"refinder/backend/memory"
 	"refinder/backend/ue"
 )
@@ -757,7 +757,7 @@ func getPropertyValue(r io.ReadSeeker, varType string, varSize uint32, saveData 
 
 	case "MapProperty":
 		if raw {
-			log.Fatal("Raw map property is not supported yet")
+			return nil, errors.New("raw map property is not supported yet")
 		}
 		return readMapProperty(r, saveData)
 

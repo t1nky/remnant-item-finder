@@ -395,7 +395,7 @@ func findAdventure(result *remnant.SaveArchive, characterItems []string) (ZoneIn
 	for i, actor := range zoneActors {
 		items, events, err := processItems(items, actor, characterItems)
 		if err != nil {
-			log.Fatal(err)
+			return ZoneInfo{}, err
 		}
 
 		actor.Items = items
@@ -420,12 +420,12 @@ func findAdventure(result *remnant.SaveArchive, characterItems []string) (ZoneIn
 func refreshSaveFile(fullPath string, characterData CharacterData) (ZoneInfo, error) {
 	fileData, err := remnant.ReadData(fullPath)
 	if err != nil {
-		log.Fatal(err)
+		return ZoneInfo{}, err
 	}
 
 	archive, err := remnant.ReadSaveArchive(bytes.NewReader(fileData))
 	if err != nil {
-		log.Fatal(err)
+		return ZoneInfo{}, err
 	}
 
 	return findAdventure(&archive, characterData.Items)
